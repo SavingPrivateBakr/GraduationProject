@@ -1,8 +1,10 @@
 'use client'
 import {ResumeList} from "@/components/dashboard/resume-list";
+import { useState } from "react";
 
 export default function DashBoardPage() {
-
+ 
+ 
 
     return (
         <div className={"mx-auto w-full max-w-[1280px]"}>

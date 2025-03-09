@@ -90,7 +90,7 @@ export function ResumePreview({data,isListItemPreview=false}) {
     const {resumeData} = useAppContext();
     const cvData = isListItemPreview ? data : resumeData;
 
-
+   
     const renderSections = () => {
         const sections = {
             contactInformation: <ContactInformationCv data={data} isListItemPreview={isListItemPreview} />,
@@ -141,7 +141,12 @@ export function ResumePreview({data,isListItemPreview=false}) {
                 />
             )
         };
+        if(cvData.data==undefined)
+        {
+            cvData.data=cvData;
+        }
         return cvData.data.order.map(section => {
+            
             return sections[section] ? sections[section] : null;
         });
     };

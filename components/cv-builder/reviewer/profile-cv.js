@@ -5,7 +5,7 @@ const ProfileCv = ({data,isListItemPreview,...props}) => {
     const {setResumeData,OnEditSectionTitle,resumeData} = useAppContext();
     const cvData = isListItemPreview ? data : resumeData;
 
-
+      
     const OnEditItem = (e,index) => {
         const value = e.target.innerText;
         const newCvData = {...cvData};
@@ -15,14 +15,14 @@ const ProfileCv = ({data,isListItemPreview,...props}) => {
                 ...newCvData,
                 data: {
                     ...newCvData.data,
-                    summary: newCvData.data.summary
+                    summary: newCvData.summary
                 }
             }
         );
     };
 
 
-    const countIsShownInPreview = cvData.data.summary.filter((item) => item.isShownInPreview).length;
+    const countIsShownInPreview =cvData.data.summary.filter((item) => item.isShownInPreview).length;
     if (countIsShownInPreview === 0) {
         return null;
     }
@@ -40,7 +40,7 @@ const ProfileCv = ({data,isListItemPreview,...props}) => {
                     </h2>
                     <div className="grid gap-0 m-0 pl-1">
                         {
-                            cvData.data.summary.map((item, index) => {
+                           cvData.data.summary.map((item, index) => {
                                 return item.isShownInPreview ?
                                     <p key={item.text}
                                        className={"editable"} contentEditable suppressContentEditableWarning

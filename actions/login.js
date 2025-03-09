@@ -3,13 +3,15 @@ import * as ThirdParty from "@/lib/auth";
 import {decodeAndSetCookies, removeAllUserCookies} from "@/lib/server-utils";
 
 export async function login(formData) {
+  
     try {
 
         const response = await ThirdParty.Login(formData);
-        if (response.access && response.refresh) {
-
-            const {username, email} = await decodeAndSetCookies(response.access, response.refresh);
-
+      
+        if (response.status=='success' ) {
+           
+            const {username, email} = await decodeAndSetCookies(response.token, response.token);
+                
             return {
                 success: true,
                 message: "Login successful",
@@ -19,6 +21,7 @@ export async function login(formData) {
             };
         }
     } catch (error) {
+       
         const errorCode = error.response.status;
         let message = "";
         if (errorCode === 401) {

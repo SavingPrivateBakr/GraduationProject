@@ -34,7 +34,9 @@ const AppProvider = ({children}) => {
 
 
     const syncResumeData = async (data) => {
+  
         const response = await cvCreateUpdate(data);
+        
         if(response.success && resumeData.id === 'new'){
             setResumeData({
                 ...response.response
@@ -42,7 +44,7 @@ const AppProvider = ({children}) => {
 
         }
     }
-
+   
     const defaultCv = {
         id: 'new',
         name: 'New CV',
@@ -130,7 +132,7 @@ const AppProvider = ({children}) => {
         return () => clearInterval(interval);
     }, []);
  
-  
+
     return (
         <AppContext.Provider value={{
             resumeData,

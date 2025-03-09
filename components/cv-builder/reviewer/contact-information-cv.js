@@ -6,7 +6,8 @@ import ContactSpace from "@/components/general/contact-space";
 const ContactInformationCv = ({data,isListItemPreview}) => {
     const {resumeData} = useAppContext();
     const cvData = isListItemPreview ? data : resumeData;
-    const hasContactInfo = cvData.data.name || cvData.data.position || cvData.data.address || cvData.data.email || cvData.data.contactInformation || (cvData.data.socialMedia && cvData.data.socialMedia.length > 0);
+   
+    const hasContactInfo = cvData.data.name || cvData.data.position || cvData.data.address || cvData.data.email || cvData.data.contactInformation || (cvData.socialMedia && cvData.socialMedia.length > 0);
 
     return (
         <>
@@ -38,7 +39,7 @@ const ContactInformationCv = ({data,isListItemPreview}) => {
                             <a aria-label="email address" href={`mailto:${cvData.data.email}`}>
                                 {cvData.data.email}
                             </a>
-                            {cvData.data.contactInformation && <ContactSpace/>}
+                            {cvData.contactInformation && <ContactSpace/>}
                         </>
                     )}
 

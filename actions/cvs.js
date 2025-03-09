@@ -4,6 +4,7 @@ import {getAccessToken} from "@/lib/server-utils";
 import {redirect} from "next/navigation";
 
 export async function cvListAction(formData) {
+   
     try{
         const cookies = await getAccessToken();
         if (!cookies){
@@ -12,13 +13,16 @@ export async function cvListAction(formData) {
                 success: false
             };
         }
+       
         const cvList = await ThirdParty.GetCvList(cookies.value,formData.page);
+     
         return {
             success: true,
             cvList
         }
 
     }catch (error){
+   
         console.error(error);
     }
     return {message: "An Error Occurred, Please try again",
@@ -30,7 +34,9 @@ export async function cvListAction(formData) {
 
 
 export async function cvCreateUpdate(cvData){
+   
     try{
+       
         const cookies = await getAccessToken();
         if (!cookies){
             redirect('/');
@@ -38,13 +44,16 @@ export async function cvCreateUpdate(cvData){
                 success: false
             };
         }
+       
         const response = await ThirdParty.CreateUpdateCv(cookies.value,cvData);
+      
         return {
             success: true,
             response
         }
 
     }catch (error){
+   
         console.error(error);
     }
     return {message: "An Error Occurred, Please try again",
@@ -68,6 +77,30 @@ export async function cvGetAction(cvId){
         return {
             success: true,
             cv
+        }
+
+    }catch (error){
+        console.error(error);
+    }
+    return {message: "An Error Occurred, Please try again",
+        success: false
+    };
+}
+
+export async function uploadCv(uploadedcv){
+
+    try{
+        
+        const cookies = await getAccessToken();
+        if (!cookies){
+            redirect('/');
+            return {message: "An Error Occurred, Please try again",
+                success: false
+            };
+        }
+        const cv = await ThirdParty.uploadCv(cookies.value,uploadedcv);
+        return {
+            success: true
         }
 
     }catch (error){

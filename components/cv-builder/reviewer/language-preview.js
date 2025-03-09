@@ -25,10 +25,10 @@ const LanguagesSection = ({droppableId, type, data, isListItemPreview,...props})
             <LanguagesHeader item={item}/>
             {filteredLanguages.map((item, index) => {
                 return <span
-                    key={`${item.title}-${index}`}
+                    key={`${item.data.title}-${index}`}
                     className={`inline-flex items-center`}
                 >
-                                <span>{item.title} ({item.level})</span>
+                                <span>{item.data.title} ({item.data.level})</span>
                     {index < filteredLanguages.length - 1 && <span>,&nbsp;</span>}
                </span>
 

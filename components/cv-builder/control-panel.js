@@ -25,11 +25,12 @@ export default function ControlPanel({id}) {
     const [isLoaded, setIsLoaded] = useState(true);
     const {Draggable} = useDndContext();
     useEffect(() => {
-        if (id === 'cvnew' && !resumeData.data.name) {
+        
+        if (id === 'cvnew' && !resumeData.name) {
             setControlPanelIndex(ControlPanelView.PersonalDetailsEditor);
         }
         setIsLoaded(false);
-    }, [id, resumeData.data.name, setControlPanelIndex]);
+    }, [id, resumeData.name, setControlPanelIndex]);
 
     const renderEditors = () => {
         const editors = {

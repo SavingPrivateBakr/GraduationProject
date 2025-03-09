@@ -29,8 +29,8 @@ const WorkList=({item,className,type,isDraggable})=> {
 const WorkExperienceCv = ({data,isListItemPreview ,type, ...props}) => {
     const {resumeData} = useAppContext();
     const item = isListItemPreview ? data : resumeData;
-
-    const countIsShownInPreview = item.data.workExperience.filter((item) => item.isShownInPreview).length;
+   
+    const countIsShownInPreview =item.data.workExperience.filter((item) => item.isShownInPreview).length;
     if (countIsShownInPreview === 0) {
         return null;
     }

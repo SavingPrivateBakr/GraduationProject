@@ -23,6 +23,7 @@ const CvLinkItem = ({title,onRemove,className, ...props}) => {
         if (displayUrl){
             newSocialMedia[index].displayName = displayUrl;
         }
+        
         setResumeData({
             ...resumeData,
             data:{

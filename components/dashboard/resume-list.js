@@ -20,20 +20,26 @@ export const ResumeList = ({...props}) => {
 
     const fetchCvList = async (currentPage) => {
         try {
+            
             setLoading(true);
             const res = await cvListAction({ page: currentPage });
-
+     
+         
             if (!res.success) {
+               
                 showErrorAlert(res.message);
                 return;
             }
+     
             if (currentPage === 1) {
-                setResumeList(res.cvList.results);
+          
+                setResumeList(res.cvList.data);
+                
             } else {
-                setResumeList((prevCvList) => [...prevCvList, ...res.cvList.results]);
+                setResumeList((prevCvList) => [...prevCvList, ...res.cvList.data]);
             }
 
-            setNextPage(res.cvList.next);
+            setNextPage(res.cvList);
             setControlPanelIndex(ControlPanelView.MainView)
         } catch (error) {
             console.error('Error fetching CV list:', error);
@@ -42,6 +48,7 @@ export const ResumeList = ({...props}) => {
     };
 
     useEffect(() => {
+   
         fetchCvList(page);
     }, [page]);
 
@@ -57,8 +64,10 @@ export const ResumeList = ({...props}) => {
     }
 
     const onClickEditCv = (cv) => {
+        console.log(cv.data._id);
         setResumeData(cv);
-        redirect(`/dashboard/${cv.id}`)
+     
+        redirect(`/dashboard/${cv.data._id}`)
     }
 
     const handleWheel = (e) => {
@@ -68,6 +77,7 @@ export const ResumeList = ({...props}) => {
         }
     };
     useEffect(() => {
+        
         const container = containerRef.current;
         container.addEventListener('wheel', handleWheel, { passive: false });
         return () => {

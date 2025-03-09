@@ -26,6 +26,7 @@ function CourseItemNotesList(item) {
 }
 
 function CourseItemBody(item, isDroppable, type, index, handleNoteChanged) {
+  
     return <>
         <div className="flex flex-row justify-between space-y-1">
             <p className="content i-bold">
