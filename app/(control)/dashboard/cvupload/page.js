@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import {uploadCv} from "@/actions/cvs"
 function cvupload() {
   const [cvfileuploaded,setcvfileuploaded]= useState(null);
-
+  const router = useRouter();
 
   const handleFileChange = (e) => {
 
@@ -25,9 +26,11 @@ function cvupload() {
     const formData = new FormData();
     formData.append("resume", cvfileuploaded);
     const status=await uploadCv(formData);
+
+    
     if(status.success==true)
     {
-      
+      router.back();
     }
 };
 

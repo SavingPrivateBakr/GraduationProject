@@ -20,15 +20,17 @@ const LanguagesSection = ({droppableId, type, data, isListItemPreview,...props})
     const filteredLanguages = item.data.languages.filter(item => item.isShownInPreview);
     const isDraggable = !isListItemPreview;
     if (!item.data.languages || !filteredLanguages.length) return null;
+      
+  
     if(!isDraggable) {
         return <div {...props}>
             <LanguagesHeader item={item}/>
             {filteredLanguages.map((item, index) => {
                 return <span
-                    key={`${item.data.title}-${index}`}
+                    key={`${item.title}-${index}`}
                     className={`inline-flex items-center`}
                 >
-                                <span>{item.data.title} ({item.data.level})</span>
+                                <span>{item.title} ({item.level})</span>
                     {index < filteredLanguages.length - 1 && <span>,&nbsp;</span>}
                </span>
 

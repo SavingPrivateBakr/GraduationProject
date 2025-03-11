@@ -1,5 +1,6 @@
 'use client';
-
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import {AddIcon, LoadMoreIcon} from "@/components/svgs/svgs";
 import EmptyCvBox from "@/components/dashboard/empty-cv-box";
 import useAppContext from "@/hooks/useAppContext";
@@ -84,6 +85,10 @@ export const ResumeList = ({...props}) => {
             container.removeEventListener('wheel', handleWheel);
         };
     }, []);
+
+    const path=usePathname();
+
+  
     return <div {...props}>
 
         <div className={"xl:dbpx relative h-auto w-full max-w-full"}>
@@ -124,17 +129,19 @@ export const ResumeList = ({...props}) => {
                 )}
 
                 {/* Load More Button */}
-                {nextPage && !loading && (
+                {!loading && (
+                                                <Link href={`${path}/cvupload`}  >
                     <div
-                        onClick={loadMoreCv}
+                       
                         className="flex appearance-none flex-col items-center hover:opacity-70 lg:flex">
                         <div
                             className="h-[254px] lg:w-38 flex w-38 items-center justify-center rounded-md border-2 border-dashed border-white ">
-                            <LoadMoreIcon/>
+
                         </div>
 
-                        <span className="mt-[10px] text-xs font-bold uppercase" onClick={loadMoreCv}>Load More</span>
+                        <span className="mt-[10px] text-xs font-bold uppercase" >Upload CV</span>
                     </div>
+                    </Link>
                 )}
             </div>
         </div>
