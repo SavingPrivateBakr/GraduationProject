@@ -1,7 +1,7 @@
 'use client';
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-import {AddIcon, LoadMoreIcon} from "@/components/svgs/svgs";
+import {AddIcon, ExitIcon, LoadMoreIcon, UploadIcon} from "@/components/svgs/svgs";
 import EmptyCvBox from "@/components/dashboard/empty-cv-box";
 import useAppContext from "@/hooks/useAppContext";
 import {useEffect, useRef, useState} from "react";
@@ -78,7 +78,7 @@ export const ResumeList = ({...props}) => {
         }
     };
     useEffect(() => {
-        
+     
         const container = containerRef.current;
         container.addEventListener('wheel', handleWheel, { passive: false });
         return () => {
@@ -111,12 +111,14 @@ export const ResumeList = ({...props}) => {
 
 
                 {resumeList.map((cv, index) => (
+                    
                     <ListContainer
                         key={index}
                         cv={{title: cv.title}}
-                        className="hover:scale-105 transition-transform text-white"
+                        className="hover:scale-110 transition-transform text-white"
                         onClick={() => onClickEditCv(cv)}
                     >
+                         
                         <ResumePreview data={cv} isListItemPreview={true}/>
                     </ListContainer>
                 ))}
@@ -136,10 +138,10 @@ export const ResumeList = ({...props}) => {
                         className="flex appearance-none flex-col items-center hover:opacity-70 lg:flex">
                         <div
                             className="h-[254px] lg:w-38 flex w-38 items-center justify-center rounded-md border-2 border-dashed border-white ">
-
+                                    <UploadIcon/>
                         </div>
 
-                        <span className="mt-[10px] text-xs font-bold uppercase" >Upload CV</span>
+                        <span className="mt-[10px] text-xs font-bold uppercase text-white" >Upload CV</span>
                     </div>
                     </Link>
                 )}

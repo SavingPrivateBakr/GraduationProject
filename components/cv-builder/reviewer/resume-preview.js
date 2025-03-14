@@ -37,12 +37,12 @@ function ResumeContainer({children}) {
 
 export function ListContainer({children, cv, className, onClick}) {
     // Target dimensions
-    const targetWidth = 180;
+    const targetWidth = 170;
     const targetHeight = 250;
 
     // Original dimensions
     const originalWidth = 620;
-    const originalHeight = 1136;
+    const originalHeight = 1130;
 
     // Calculate scale to fit within the target container
     const scale = Math.min(targetWidth / originalWidth, targetHeight / originalHeight);
@@ -75,7 +75,7 @@ export function ListContainer({children, cv, className, onClick}) {
                 </div>
             </div>
             {/* CV Title */}
-            <span className="mt-[10px] text-xs font-bold uppercase">{cv.title}</span>
+            <span className="mt-[10px] text-xs font-bold uppercase text-white">{cv.title}</span>
         </div>
     );
 }

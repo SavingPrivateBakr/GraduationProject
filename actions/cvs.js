@@ -110,3 +110,33 @@ export async function uploadCv(uploadedcv){
         success: false
     };
 }
+
+
+export async function deleteCv(cvData){
+   
+    try{
+       
+        const cookies = await getAccessToken();
+        if (!cookies){
+            redirect('/');
+            return {message: "An Error Occurred, Please try again",
+                success: false
+            };
+        }
+       
+        const response = await ThirdParty.deleteCv(cookies.value,cvData);
+      
+        return {
+            success: true,
+            response
+        }
+
+    }catch (error){
+   
+        console.error(error);
+    }
+    return {message: "An Error Occurred, Please try again",
+        success: false
+    };
+}
+
