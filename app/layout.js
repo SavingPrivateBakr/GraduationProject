@@ -4,7 +4,7 @@ import {geistMono, geistSans} from "@/app/fonts";
 import Header from "@/components/landing/header";
 
 export const metadata = {
-    title: "ATS Cracker",
+    title: "CareerCompass",
     description: "Make Your Resume Stand Out",
 };
 

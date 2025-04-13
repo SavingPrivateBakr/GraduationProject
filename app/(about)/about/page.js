@@ -1,149 +1,51 @@
-import ImageViewer from "@/components/about/image-viewer";
+"use client";
+import React from "react";
+import ActionCard from "@/components/actioncard/card"
+
+export default function Decision() {
 
 
-function Profile() {
+    
     return (
-        <div className="sticky top-0 w-full md:w-1/3 mb-8 text-center md:text-left">
-            {/* Profile Image and Name */}
-            <div className="mb-8 text-center">
-                <img
-                    src="/me-m.jpeg"
-                    alt="Profile Image"
-                    className="w-32 h-32 mx-auto rounded-full object-cover"
-                />
-                <h2 className="text-3xl font-semibold mt-4">
-                    Mario Nageh <span className="text-xs">(Alchemist)</span>
-                </h2>
-                <p className="text-xl text-gray-400">Senior Software Developer</p>
-
-                <div className="flex justify-center space-x-8 mt-2">
-                    <a
-                        href="https://www.linkedin.com/in/marionageh/"
-                        className="text-blue-500 hover:text-blue-300"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        LinkedIn
-                    </a>
-                    <a
-                        href="https://github.com/MarioNageh"
-                        className="text-blue-500 hover:text-blue-300"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        GitHub
-                    </a>
-                </div>
-            </div>
+        <div className="mt-52 flex flex-col items-center justify-center ">
+          <div className="text-center mb-16">
+           
+            <h2 className="font-roboto text-xl md:text-2xl text-[#a3a3a3] max-w-2xl">
+              Unlock Your Professional Potential with AI-Powered Career Guidance
+            </h2>
+          </div>
+    
+          <div className="flex flex-col md:flex-row gap-6 justify-center">
+            <ActionCard
+              title="AI Career Recommendation"
+              description="Let AI suggest the best career path based on your skills and experience"
+              icon={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"
+                  />
+                </svg>
+              }
+            />
+            <ActionCard
+              title="Choose Career Path"
+              description="Select your desired career path and get a personalized roadmap"
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+              </svg>
+              }
+            />
+          </div>
         </div>
-    );
-}
-
-export default async function AboutPage() {
-    return (
-        <div className="text-white min-h-screen px-8 py-12">
-            <h1 className="text-4xl font-bold mb-8 text-center">
-                ATS Cracker - Bypass ATS System with Avg 96-100% Score
-            </h1>
-
-            <section className="bg-dark py-20">
-                <div className="container flex md:flex-row gap-8  ">
-                    {/* Profile Section */}
-                    <Profile/>
-
-                    {/* Content Section */}
-                    <div className="w-full md:w-2/3 ">
-                        <section className="mb-8">
-                            <div className="grid gap-8 md:grid-cols-2">
-                                <div className="overflow-hidden rounded-xl">
-                                    <img
-                                        src="/ats2.png"
-                                        alt="gallery image"
-                                        className="w-full object-cover object-center"
-                                    />
-                                </div>
-
-                                <div className="overflow-hidden rounded-xl">
-                                    <img
-                                        src="/ats1.png"
-                                        alt="gallery image"
-                                        className="w-full object-cover object-center"
-                                    />
-                                </div>
-                            </div>
-                        </section>
-
-                        <p className="text-2xl font-bold mb-2 text-center">
-                            This Results From <span> </span>
-                            <span>
-                                <a
-                                    href="https://www.jobscan.co/"
-                                    className="text-blue-500 hover:text-blue-300 underline"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    JobScan
-                                </a>
-                            </span>
-                            <span> and </span>
-                            <span>
-                                <a
-                                    href="https://www.resumego.net/"
-                                    className="text-blue-500 hover:text-blue-300 underline"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    ResumeGo
-                                </a>
-                            </span>
-                        </p>
-
-                        <p className="text-2xl mb-4 text-center">
-                            Your Cv Now Is Json Object <span className={"text-xs"}>[GPT Is Looking For You] 👀 👀</span>
-                        </p>
-
-                        <p className="text-xl font-semibold mb-12 text-center text-gray-200">
-                            <span className="block text-3xl font-extrabold mb-4
-                            text-pink-500">Some of the features of the ATS Cracker:</span>
-                            <div className="rounded-2xl p-6 shadow-lg">
-                                <ul className="list-none space-y-4 text-left pl-4">
-                                    <li className="text-lg text-gray-300">
-                                        <span className="font-bold text-pink-500">1-</span> Convert your CV to JSON
-                                        object.
-                                    </li>
-                                    <li className="text-lg text-gray-300">
-                                        <span className="font-bold text-pink-500">2-</span> Convert your JSON object to
-                                        CV.
-                                    </li>
-                                    <li className="text-lg text-gray-300">
-                                        <span className="font-bold text-pink-500">3-</span> Save your CV as PDF.
-                                    </li>
-                                    <li className="text-lg text-gray-300">
-                                        <span className="font-bold text-pink-500">4-</span> Download your CV as JSON
-                                        object.
-                                    </li>
-                                    <li className="text-lg text-gray-300">
-                                        <span className="font-bold text-pink-500">5-</span> Download your CV as PDF.
-                                    </li>
-                                    <li className="text-lg text-gray-300">
-                                        <span className="font-bold text-pink-500">6-</span> You can duplicate your CV
-                                        via paste JSON object.
-                                    </li>
-                                </ul>
-                            </div>
-                        </p>
-
-                        <section className="mb-8">
-                            <ImageViewer/>
-                        </section>
-
-                    </div>
-                </div>
-
-
-            </section>
-
-
-        </div>
-    );
+      );
 }

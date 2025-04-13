@@ -44,7 +44,8 @@ const AppProvider = ({children}) => {
 
         }
     }
-   
+   console.log(resumeData);
+  
     const defaultCv = {
         id: 'new',
         name: 'New CV',
@@ -132,6 +133,7 @@ const AppProvider = ({children}) => {
         return () => clearInterval(interval);
     }, []);
  
+
 
     return (
         <AppContext.Provider value={{

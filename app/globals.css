@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  --backgroundforcard: #1F2937;
   --background: #ffffff;
   --foreground: #ffffff;
   --greyWhite: #f1f1f1;
@@ -16,6 +17,7 @@
   --gradientPinkRed-to: #d749f3;
   --purple-500: #a855f7;
   --blue-500: #3B82F6;
+ 
 }
 
 body {

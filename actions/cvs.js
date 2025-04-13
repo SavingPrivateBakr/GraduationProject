@@ -140,3 +140,57 @@ export async function deleteCv(cvData){
     };
 }
 
+
+export async function analysisCv(cvId){
+    try{
+        const cookies = await getAccessToken();
+        if (!cookies){
+            redirect('/');
+            return {message: "An Error Occurred, Please try again",
+                success: false
+            };
+        }
+        
+        const careers = await ThirdParty.analysisCv(cookies.value,cvId);
+ 
+        return {
+            success: true,
+            careers
+        }
+      
+    }catch (error){
+        console.error(error);
+    }
+    
+    return {message: "An Error Occurred, Please try again",
+        success: false
+    };
+}
+
+
+export async function careerpath(cvId, track){
+
+    try{
+        const cookies = await getAccessToken();
+        if (!cookies){
+            redirect('/');
+            return {message: "An Error Occurred, Please try again",
+                success: false
+            };
+        }
+        
+        const roadmap = await ThirdParty.careerpath(cookies.value,cvId,track);
+ 
+        return {
+            success: true,
+            roadmap
+        }
+      
+    }catch (error){
+        console.error(error);
+    }
+    
+    return {message: "An Error Occurred, Please try again",
+        success: false
+    };
+}

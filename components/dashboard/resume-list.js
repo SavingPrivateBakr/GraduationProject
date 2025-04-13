@@ -53,11 +53,7 @@ export const ResumeList = ({...props}) => {
         fetchCvList(page);
     }, [page]);
 
-    const loadMoreCv = () => {
-        if (nextPage) {
-            setPage((prevPage) => prevPage + 1);
-        }
-    };
+  
 
     const onClickNewCv = () => {
         setResumeData({...defaultCv});
@@ -78,7 +74,7 @@ export const ResumeList = ({...props}) => {
         }
     };
     useEffect(() => {
-     
+  
         const container = containerRef.current;
         container.addEventListener('wheel', handleWheel, { passive: false });
         return () => {
@@ -87,7 +83,7 @@ export const ResumeList = ({...props}) => {
     }, []);
 
     const path=usePathname();
-
+    console.log(resumeList);
   
     return <div {...props}>
 

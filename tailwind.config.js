@@ -63,6 +63,7 @@ module.exports = {
         gradientPinkRed: "var(--gradientPinkRed)",
         brandDarkBlue: "var(--brandDarkBlue)",
         specialSandLight: "var(--specialSandLight)",
+        backgroundforcard :"var(--backgroundforcard)",
         green: {
           400: '#4ade80',
         },
