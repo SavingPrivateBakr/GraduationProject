@@ -2,12 +2,12 @@
 import { Dialog } from "@headlessui/react";
 import { EmailIcon, PasswordIcon, UserIcon } from "@/components/svgs/svgs";
 import InputField from "@/components/auth/modals-input";
-import {useState} from "react";
+import { useState } from "react";
 import useAppContext from "@/hooks/useAppContext";
 import * as ServerActions from "@/actions/register";
-import {showErrorAlert} from "@/lib/alerts";
+import { showErrorAlert } from "@/lib/alerts";
 
-export default function RegisterModal({ onChangeModal,closeModal }) {
+export default function RegisterModal({ onChangeModal, closeModal }) {
 
     const [formData, setFormData] = useState({
         email: "",
@@ -50,11 +50,10 @@ export default function RegisterModal({ onChangeModal,closeModal }) {
         }
 
         // Email simple Validation
-        if(!formData.email.includes("@") || !formData.email.includes(".")){
+        if (!formData.email.includes("@") || !formData.email.includes(".")) {
             showErrorAlert("Invalid email address.");
             return false;
         }
-
 
         return true;
     }
@@ -78,21 +77,16 @@ export default function RegisterModal({ onChangeModal,closeModal }) {
             showErrorAlert(message.message);
         }
         setIsSubmitting(false);
-
-
     };
 
     return (
-        <div className="fixed inset-0 flex items-start justify-center p-4" style={{top: "15%"}}>
+        <div className="fixed inset-0 flex items-start justify-center p-4 overflow-y-auto" style={{ top: "15%" }}>
             <Dialog.Panel
-                className="w-full max-w-md h-[600px] transform overflow-hidden
-                rounded-2xl bg-[#0F172A]  p-6 text-left align-middle shadow-xl
-                transition-all pt-6 sm:p-12 sm:pt-8 md:min-h-min
-                md:min-w-[500px] md:p-14 md:pt-10 lg:p-16 lg:pt-16"
+                className="w-full max-w-[500px] h-auto transform overflow-hidden rounded-2xl bg-[#0F172A] p-6 text-left align-middle shadow-xl transition-all pt-6 sm:p-12 sm:pt-8 md:min-h-min md:p-14 md:pt-10 lg:p-16 lg:pt-16"
             >
                 <Dialog.Title
                     as="h1"
-                      className="text-4xl font-bold text-center mb-8 bg-gradient-to-r text-white bg-clip-text text-transparent"
+                    className="text-4xl font-bold text-center mb-8 bg-gradient-to-r text-white bg-clip-text text-transparent"
                 >
                     Create Account
                 </Dialog.Title>
@@ -109,7 +103,6 @@ export default function RegisterModal({ onChangeModal,closeModal }) {
                         disabled={isSubmitting}
                     />
 
-
                     {/* Email Field */}
                     <div className="relative mt-10 lg:mt-12">
                         <InputField
@@ -124,7 +117,7 @@ export default function RegisterModal({ onChangeModal,closeModal }) {
                         />
                     </div>
 
-                    {/*Password Input*/}
+                    {/* Password Input */}
                     <div className="relative mt-10 lg:mt-12">
                         <InputField
                             id="passwordId"
@@ -146,8 +139,7 @@ export default function RegisterModal({ onChangeModal,closeModal }) {
                         </button>
                     </div>
 
-
-                    {/*Confirm Password Input*/}
+                    {/* Confirm Password Input */}
                     <div className="relative mt-10 lg:mt-12">
                         <InputField
                             id="confirmPasswordId"
@@ -166,7 +158,7 @@ export default function RegisterModal({ onChangeModal,closeModal }) {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className={`border-none cursor-pointer appearance-none touch-manipulation flex items-center justify-center   w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg py-3 font-medium hover:opacity-90 disabled:opacity-50 focus-visible:outline-blue-600 px-7 h-[60px] text-[20px] min-w-[180px]  bg-gradientPinkRed shadow-product  ${
+                            className={`border-none cursor-pointer appearance-none touch-manipulation flex items-center justify-center w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg py-3 font-medium hover:opacity-90 disabled:opacity-50 focus-visible:outline-blue-600 px-7 h-[60px] text-[20px] min-w-[180px]  bg-gradientPinkRed shadow-product  ${
                                 isSubmitting ? "opacity-50 cursor-not-allowed" : "hover:opacity-80"
                             }`}
                         >
@@ -181,10 +173,9 @@ export default function RegisterModal({ onChangeModal,closeModal }) {
                         onClick={onChangeModal}
                         disabled={isSubmitting}
                         type="button"
-                        className=" cursor-pointer appearance-none touch-manipulation flex items-center justify-center focus-visible:outline-blue-600 rounded-xl text-base font-bold hover:opacity-80
-                        text-white  px-4 py-3 focus:outline-none focus:border-blue-500"
+                        className="cursor-pointer appearance-none touch-manipulation flex items-center justify-center focus-visible:outline-blue-600 rounded-xl text-base font-bold hover:opacity-80 text-white px-4 py-3 focus:outline-none focus:border-blue-500"
                     >
-                        Have already an account? Login
+                        Already have an account? Login
                     </button>
                 </div>
             </Dialog.Panel>

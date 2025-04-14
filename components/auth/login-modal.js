@@ -4,11 +4,10 @@ import { Dialog } from "@headlessui/react";
 import { EmailIcon, PasswordIcon } from "@/components/svgs/svgs";
 import InputField from "@/components/auth/modals-input";
 import * as ServerActions from "@/actions/login";
-import {showErrorAlert} from "@/lib/alerts";
+import { showErrorAlert } from "@/lib/alerts";
 import useAppContext from "@/hooks/useAppContext";
 
-
-export default function LoginModal({ onChangeModal,closeModal }) {
+export default function LoginModal({ onChangeModal, closeModal }) {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -30,46 +29,37 @@ export default function LoginModal({ onChangeModal,closeModal }) {
         e.preventDefault();
         setIsSubmitting(true);
 
-
-
         const message = await ServerActions.login(formData);
-     
+
         if (message.success) {
-            // Login successful
             login({
                 email: formData.email,
                 username: message.username,
-            })
-            closeModal()
-
+            });
+            closeModal();
         } else {
-            // Login failed
             showErrorAlert(message.message);
         }
+
         setIsSubmitting(false);
-
-
     };
 
     return (
-        <div className="fixed inset-0 flex items-start justify-center content-center p-4" style={{ top: "15%" }}>
+        <div className="fixed inset-0 flex items-start justify-center content-center p-4 min-h-screen overflow-y-auto" style={{ paddingTop: "15%" }}>
             <Dialog.Panel
-                className="w-full max-w-md h-[500px] transform overflow-hidden
-          
-                bg-[#0F172A] rounded-xl p-8 border border-gray-700  text-left align-middle shadow-xl
-                transition-all pt-6 sm:p-12 sm:pt-8 md:min-h-min
-                md:min-w-[500px] md:p-14 md:pt-10 lg:p-16 lg:pt-16"
+                className="w-full max-w-md transform overflow-hidden
+                bg-[#0F172A] rounded-xl p-8 border border-gray-700 text-left align-middle shadow-xl
+                transition-all pt-6 sm:p-12 sm:pt-8 md:min-h-min md:min-w-[500px] md:p-14 md:pt-10 lg:p-16 lg:pt-16"
             >
-               <Dialog.Title
-    as="h1"
-    className="text-4xl font-bold text-center mb-8 bg-gradient-to-r  bg-clip-text text-white"
->
-    Login
-</Dialog.Title>
+                <Dialog.Title
+                    as="h1"
+                    className="text-4xl font-bold text-center mb-8 bg-gradient-to-r bg-clip-text text-white"
+                >
+                    Login
+                </Dialog.Title>
 
                 <form onSubmit={handleSubmit} className="mt-10 lg:mt-12">
-
-                    {/*Email Input*/}
+                    {/* Email Input */}
                     <InputField
                         id="emailId"
                         type="email"
@@ -81,7 +71,7 @@ export default function LoginModal({ onChangeModal,closeModal }) {
                         disabled={isSubmitting}
                     />
 
-                    {/*Password Input*/}
+                    {/* Password Input */}
                     <div className="relative mt-10 lg:mt-12">
                         <InputField
                             id="passwordId"
@@ -108,7 +98,7 @@ export default function LoginModal({ onChangeModal,closeModal }) {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className={`border-none cursor-pointer   w-full bg-gradient-to-r  text-white rounded-lg py-3 font-medium hover:opacity-90 disabled:opacity-50 appearance-none touch-manipulation flex items-center justify-center focus-visible:outline-blue-600 px-7  h-[60px] text-[20px] min-w-[180px]  bg-gradientPinkRed shadow-product  ${
+                            className={`border-none cursor-pointer w-full bg-gradient-to-r text-white rounded-lg py-3 font-medium disabled:opacity-50 appearance-none touch-manipulation flex items-center justify-center focus-visible:outline-blue-600 px-7 h-[60px] text-[20px] min-w-[180px] bg-gradientPinkRed shadow-product ${
                                 isSubmitting ? "opacity-50 cursor-not-allowed" : "hover:opacity-80"
                             }`}
                         >
@@ -123,9 +113,7 @@ export default function LoginModal({ onChangeModal,closeModal }) {
                         type="button"
                         onClick={onChangeModal}
                         disabled={isSubmitting}
-                        className="border-none text-white cursor-pointer appearance-none touch-manipulation flex items-center
-                        justify-center focus-visible:outline-blue-600 rounded-xl text-base font-bold hover:opacity-80"
-                        
+                        className="border-none text-white cursor-pointer appearance-none touch-manipulation flex items-center justify-center focus-visible:outline-blue-600 rounded-xl text-base font-bold hover:opacity-80"
                     >
                         Create account
                     </button>
