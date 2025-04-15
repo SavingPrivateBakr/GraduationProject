@@ -12,7 +12,7 @@ export default function RegisterModal({ onChangeModal, closeModal }) {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
-        confirm_password: "",
+        passwordConfirm: "",
         username: "",
     });
 
@@ -38,7 +38,7 @@ export default function RegisterModal({ onChangeModal, closeModal }) {
         }
 
         // Check if password and confirm password match
-        if (formData.password !== formData.confirm_password) {
+        if (formData.password !== formData.passwordConfirm) {
             showErrorAlert("Passwords do not match.");
             return false;
         }
@@ -144,8 +144,8 @@ export default function RegisterModal({ onChangeModal, closeModal }) {
                         <InputField
                             id="confirmPasswordId"
                             type={showPassword ? "text" : "password"}
-                            name="confirm_password"
-                            value={formData.confirm_password}
+                            name="passwordConfirm"
+                            value={formData.passwordConfirm}
                             onChange={handleChange}
                             label="Confirm Password"
                             Icon={PasswordIcon}

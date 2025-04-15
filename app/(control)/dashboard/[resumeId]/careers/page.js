@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { analysisCv } from "@/actions/cvs";
-
+import Link from "next/link";
 
 export default function Careers({ params }) {
   const { resumeId } = React.use(params);
