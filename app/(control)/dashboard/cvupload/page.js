@@ -73,11 +73,12 @@ function cvupload() {
 }
               </div>
               <button
-                onClick={handleUpload}
-                className="w-full mt-6 bg-gradientPinkRed text-white rounded-lg py-3 font-medium hover:opacity-90 disabled:opacity-50"
-              >
-               upload the file
-              </button>
+  onClick={handleUpload}
+  disabled={!cvfileuploaded}
+  className="w-full mt-6 bg-gradientPinkRed text-white rounded-lg py-3 font-semibold transition-all duration-300 hover:opacity-90 hover:font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+>
+  Upload the file
+</button>
             </div>
           </div>
         

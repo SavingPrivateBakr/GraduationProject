@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ActionCard from "@/components/actioncard/card"
+import ActionCard from "@/components/cards/actioncard"
 
 export default function Decision() {
 

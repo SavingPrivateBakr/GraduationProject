@@ -9,9 +9,9 @@ export async function login(formData) {
         const response = await ThirdParty.Login(formData);
       
         if (response.status=='success' ) {
-           
+           console.log("Login Response: ", response);
             const {username, email} = await decodeAndSetCookies(response.token, response.token);
-                
+             
             return {
                 success: true,
                 message: "Login successful",

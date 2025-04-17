@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ActionCard from "@/components/actioncard/card"
+import ActionCard from "@/components/cards/actioncard"
 import useAppContext from "@/hooks/useAppContext";
 import{useEffect, useState} from "react";
 import { useRouter } from 'next/navigation';
@@ -21,7 +21,7 @@ export default function Decision({params}) {
   
   
     return (
-        <div className="mt-52 flex flex-col items-center justify-center ">
+        <div className="mt-52 flex flex-wrap gap-6 justify-center w-5/6 h-full ">
           <div className="text-center mb-16">
            
             <h2 className="font-roboto text-xl md:text-2xl text-[#a3a3a3] max-w-2xl">
@@ -31,7 +31,7 @@ export default function Decision({params}) {
           </div>
      
           
-          <div className="flex flex-col md:flex-row gap-6 justify-center">
+          <div className="flex flex-col md:flex-row gap-6 justify-center h-full max-w-fit ">
             
             <ActionCard
               title="AI Career Recommendation"
@@ -54,7 +54,24 @@ export default function Decision({params}) {
               }
               route={`/dashboard/${resumeId}/careers`}
             />
-    
+            
+       <ActionCard
+              title="Ats of Resume"
+              description="Get a detailed analysis of your resume and how it matches with the job description"
+              icon={
+                <svg  xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6">
+                <path d="M13.5 2c-.178 0-.356.013-.492.022l-.074.005a1 1 0 0 0-.934.998V11a1 1 0 0 0 1 1h7.975a1 1 0 0 0 .998-.934l.005-.074A7.04 7.04 0 0 0 22 10.5 8.5 8.5 0 0 0 13.5 2Z"/>
+                <path d="M11 6.025a1 1 0 0 0-1.065-.998 8.5 8.5 0 1 0 9.038 9.039A1 1 0 0 0 17.975 13H11V6.025Z"/>
+              </svg>
+              
+              }
+              route={`/dashboard/${resumeId}/atsrecord`}
+            />
           
             <ActionCard
               title="Choose Career Path"

@@ -10,7 +10,7 @@ export default function ActionCard({ title, description, icon, route }) {
 
   return (
     <div
-      className="inline-block w-1/3 cursor-pointer h-90 bg-backgroundforcard rounded-lg p-9 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg border border-[#3d3d3d] hover:border-[#6b46c1]"
+      className="inline-block w-1/4 h-full cursor-pointer h-90 bg-backgroundforcard rounded-lg p-9 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg border border-[#3d3d3d] hover:border-[#6b46c1]"
       onClick={handleClick}
     >
       <div className="flex items-start gap-4">
