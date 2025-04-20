@@ -1,9 +1,13 @@
 "use client";
 import React from "react";
-
+import { useSearchParams } from 'next/navigation';
 function Roadmap({params}) {
-    const { resumeId,track } = React.use(params);
-    console.log(resumeId,track);
+  const searchParams = useSearchParams();
+    
+   console.log(searchParams);
+  
+    const { resumeId,desiredCareer } = React.use(params);
+    console.log(resumeId,desiredCareer);
   const modules = [
     {
       time: "Month 1-2",

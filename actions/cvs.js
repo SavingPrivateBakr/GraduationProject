@@ -194,3 +194,30 @@ export async function careerpath(cvId, track){
         success: false
     };
 }
+
+export async function joblist(track, location){
+    try{
+        const cookies = await getAccessToken();
+        if (!cookies){
+            redirect('/');
+            return {message: "An Error Occurred, Please try again",
+                success: false
+            };
+        }
+       
+        const jobs = await ThirdParty.joblist(cookies.value,track,location);
+     
+        return {
+            success: true,
+            jobs
+        }
+      
+    }catch (error){
+        console.error(error);
+    }
+    
+    return {message: "An Error Occurred, Please try again",
+        success: false
+    };
+
+}

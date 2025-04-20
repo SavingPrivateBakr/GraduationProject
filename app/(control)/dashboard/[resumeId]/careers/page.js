@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from "react";
 import { analysisCv } from "@/actions/cvs";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Careers({ params }) {
   const { resumeId } = React.use(params);
   const [careers, setCareers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +29,13 @@ export default function Careers({ params }) {
   
     fetchData();
   }, [resumeId]);
+
+
+ const handletherouting = (career) => {
+
+    router.push(`/dashboard/${resumeId}/roadmap?desiredCareer=${career.title}`);
+
+  }
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -74,9 +83,10 @@ export default function Careers({ params }) {
                 <p className="text-gray-300">{career.description}</p>
                 
                 <div className="flex justify-between items-center pt-2 border-t border-gray-700">
-                  <Link 
-                    href={`/dashboard/${resumeId}/roadmap`} 
-                    className="text-blue-400 hover:text-blue-300 transition-colors flex items-center"
+                <p
+
+           className="text-blue-400 cursor-pointer hover:text-blue-300 transition-colors flex items-center"
+           onClick={() => handletherouting(career)}
                   >
                     View Details
                     <svg 
@@ -92,7 +102,7 @@ export default function Careers({ params }) {
                         d="M14 5l7 7m0 0l-7 7m7-7H3"
                       />
                     </svg>
-                  </Link>
+                  </p>
                 </div>
               </div>
             </div>
