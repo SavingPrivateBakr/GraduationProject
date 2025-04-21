@@ -4,18 +4,15 @@ import { useSearchParams } from 'next/navigation';
 import { joblist } from '@/actions/cvs';
 
 function cleanJobDescription(description) {
-    // Remove HTML tags and &nbsp;
+
     let cleanText = description.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ');
-    
-    // Normalize whitespace and trim
+
     cleanText = cleanText.replace(/\s+/g, ' ').trim();
     
-    // Capitalize first letter
     cleanText = cleanText.charAt(0).toUpperCase() + cleanText.slice(1);
     
-    // Fix punctuation spacing
     cleanText = cleanText.replace(/\s+([,.])/g, '$1');
-    
+
     return cleanText;
   }
 

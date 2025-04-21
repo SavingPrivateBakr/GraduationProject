@@ -171,6 +171,7 @@ export async function analysisCv(cvId){
 export async function careerpath(cvId, track){
 
     try{
+        console.log(cvId, track);   
         const cookies = await getAccessToken();
         if (!cookies){
             redirect('/');
@@ -180,7 +181,7 @@ export async function careerpath(cvId, track){
         }
         
         const roadmap = await ThirdParty.careerpath(cookies.value,cvId,track);
- 
+
         return {
             success: true,
             roadmap
@@ -210,6 +211,35 @@ export async function joblist(track, location){
         return {
             success: true,
             jobs
+        }
+      
+    }catch (error){
+        console.error(error);
+    }
+    
+    return {message: "An Error Occurred, Please try again",
+        success: false
+    };
+
+}
+
+
+
+export async function atsanalysis(cvId, jobDescription){
+    try{
+        const cookies = await getAccessToken();
+        if (!cookies){
+            redirect('/');
+            return {message: "An Error Occurred, Please try again",
+                success: false
+            };
+        }
+        console.log(cvId, jobDescription);
+        const atsresult = await ThirdParty.atsanalysis(cookies.value,cvId,jobDescription);
+     
+        return {
+            success: true,
+            atsresult
         }
       
     }catch (error){

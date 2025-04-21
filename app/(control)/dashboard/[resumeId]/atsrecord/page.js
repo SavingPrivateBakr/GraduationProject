@@ -17,11 +17,13 @@ export default function ResumeUploader({ params }) {
     }
 
     try {
-      // Encode the job description for URL safety
-      const encodedDescription = encodeURIComponent(localJobDescription);
+
       
-      // Navigate to the analysis page with the job description
-      router.push(`/dashboard/${resumeId}/atsrecord/atsresult?jobDescription=${encodedDescription}`);
+      
+     
+      router.push(`/dashboard/${resumeId}/atsrecord/atsresult`,{
+        state : { jobDescription: localJobDescription }
+      });
       
     } catch (err) {
       console.error('Navigation error:', err);

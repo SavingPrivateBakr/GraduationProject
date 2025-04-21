@@ -6,7 +6,7 @@ const Jobsearch = () => {
     track: 'All Job Types',
     location: 'All Locations'
   });
-  const [submittedFilters, setSubmittedFilters] = useState(null);
+
 const router = useRouter();
 
   const track = [
@@ -61,23 +61,13 @@ const router = useRouter();
       ...prev,
       [name]: value
     }));
+ 
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmittedFilters({
-      track: filters.track === 'All Job Types' ? 'All Job Types' : filters.track,
-      location: filters.location === 'All Locations' ? 'All Locations' : filters.location
-
-      
-    });
-    const params = new URLSearchParams({
-      jobType: 'Frontend',
-      location: 'Remote'
-    });
-
-    // Navigate to jobs page with query params
-    router.push(`jobsearch/jobs?${params.toString()}`);
+  
+    router.push(`jobsearch/jobs?jobType=${filters.track}&location=${filters.location}`);
   };
 
   return (

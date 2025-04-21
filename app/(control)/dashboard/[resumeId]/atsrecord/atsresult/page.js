@@ -1,8 +1,9 @@
 'use client';
-import React, { useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { MdExpandMore, MdExpandLess } from 'react-icons/md';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/cards/cardcopied";
-
+import { atsanalysis } from '@/actions/cvs';
+import { useSearchParams } from 'next/navigation';
 const getScoreColor = (score) => {
   if (score >= 90) return 'bg-emerald-500 text-white';
   if (score >= 70) return 'bg-blue-500 text-white';
@@ -10,55 +11,56 @@ const getScoreColor = (score) => {
   return 'bg-red-400 text-white';
 };
 
-const ResumeWorth = ({ 
+const ResumeWorth = ({ params,
   atsScore, 
   jobMatch, 
   structure, 
   detailedFeedback 
 }) => {
-    const fakeData = {
-        atsScore: {
-          overall: 70,
-          keywords: ['JavaScript', 'React', 'Node.js', 'CSS', 'HTML'],
-          missingKeywords: ['TypeScript', 'Python', 'Java'],
-          formatScore: 100,
-        },
-        jobMatch: {
-          score: 100,
-          matchingSkills: ['React', 'Node.js', 'CSS'],
-          missingSkills: ['Docker', 'GraphQL'],
-          recommendations: ['Add Docker knowledge', 'Learn GraphQL for better match'],
-          relevance: 100,
-        },
-        structure: {
-          completeness: 3,
-          sectionsPresent: ['Experience', 'Education', 'Skills', 'Projects'],
-          sectionsMissing: ['Certifications', 'Awards'],
-          suggestions: ['Include certifications to boost credibility'],
-          readability: 1,
-        },
-        detailedFeedback: {
-          overallScore: 3,
-          summary: 'Your resume has a solid foundation but lacks some important details.',
-          strengths: ['Strong experience in front-end development', 'Well-structured education section'],
-          weaknesses: ['Missing recent projects', 'Lack of technical certifications'],
-          actionItems: ['Add more recent projects to show ongoing work', 'Consider earning technical certifications'],
-          improvementPlan: 'Focus on adding more relevant projects and certifications to improve ATS score and job match.',
-        }
-      };
-      
-      detailedFeedback = fakeData.detailedFeedback;
-      atsScore = fakeData.atsScore;
-      jobMatch = fakeData.jobMatch;
-      structure = fakeData.structure;
 
+  const [atsdata,setatsdata] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const { resumeId } = React.use(params);
+    const jobDescription =  window.history.state;
+
+
+      
+  
+
+      useEffect(() => { 
+      const  fetchasts = async () => {
+            try {
+             
+              const response = await atsanalysis(resumeId,jobDescription);
+        
+              setatsdata(response.atsresult.data);
+          
+              
+            } catch (error) {
+              setError("Failed to load jobs data");
+            } finally {
+              setLoading(false);
+            }
+          };
+
+        fetchasts()
+      }, []);
+
+
+   
+
+      detailedFeedback = atsdata.detailedFeedback;
+      atsScore = atsdata.atsScore;
+      jobMatch = atsdata.jobMatch;
+      structure = atsdata.structure;
+      
   const [isScoresExpanded, setIsScoresExpanded] = useState(false);
   const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
 
-  const overallScore = detailedFeedback.overallScore || Math.round(
-    (atsScore.overall + jobMatch.score*3 + structure.completeness) / 5
-  );
-
+   
   const renderScore = (score) => (
     <div className={`px-4 py-2 text-xl font-bold rounded-xl text-center ${getScoreColor(score)} shadow-md`}>
       {score}%
@@ -67,6 +69,23 @@ const ResumeWorth = ({
 
   const toggleScores = () => setIsScoresExpanded(!isScoresExpanded);
   const toggleDetails = () => setIsDetailsExpanded(!isDetailsExpanded);
+
+
+  if (loading) {
+    return (
+      <div className="container mx-auto p-8 max-w-6xl text-white text-center">
+        <div className="animate-pulse text-xl text-blue-300">Loading career...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container mx-auto p-8 max-w-6xl text-white text-center">
+        <div className="text-red-500 text-xl">Error: {error}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto p-4 md:p-8 max-w-6xl text-white relative overflow-hidden">
@@ -207,8 +226,8 @@ const ResumeWorth = ({
               How well your resume is organized
             </CardDescription>
             <div className="flex justify-between items-center mt-2">
-              {renderScore(structure.completeness * 25)}
-              <span className="text-xs text-gray-500">Readability: {structure.readability * 25}%</span>
+              {renderScore(structure.completeness )}
+              <span className="text-xs text-gray-500">Readability: {structure.readability }%</span>
             </div>
           </CardHeader>
           <CardContent className={`${isScoresExpanded ? 'block' : 'hidden'} mt-4 space-y-4`}>
@@ -252,7 +271,9 @@ const ResumeWorth = ({
                 </svg>
               </span>
               Detailed Analysis
-              {renderScore(overallScore)}
+              {renderScore((detailedFeedback.overallScore || Math.round(
+          (atsScore.overall + jobMatch.score*3 + structure.completeness) / 5
+        )))}
             </CardTitle>
             <CardDescription className="text-sm text-gray-400 max-w-2xl">
               {detailedFeedback.summary}
