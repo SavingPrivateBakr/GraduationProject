@@ -5,11 +5,11 @@ import {decodeAndSetCookies, removeAllUserCookies} from "@/lib/server-utils";
 export async function login(formData) {
   
     try {
-
+           
         const response = await ThirdParty.Login(formData);
       
         if (response.status=='success' ) {
-           console.log("Login Response: ", response);
+          
             const {username, email} = await decodeAndSetCookies(response.token, response.token);
              
             return {
@@ -54,4 +54,36 @@ export async function logout() {
             statusCode: 500
         };
     }
+}
+
+
+
+export async function forgetpassword(email) {
+    try {
+        const response = await ThirdParty.ForgetPassword(email);
+        
+        if (response.status === 'success') {
+            return {
+                success: true,
+                message: "Password reset link sent to your email",
+                statusCode: 200
+            };
+        }
+    } catch (error) {
+        const errorCode = error.response.status;
+        let message = "";
+        if (errorCode === 400) {
+            message = "Invalid email address";
+        } else {
+            message = "Something went wrong. Please try again later";
+        }
+        // Return error response
+        return {
+            success: false,
+            message: message,
+            statusCode: errorCode
+        };
+    }
+
+
 }

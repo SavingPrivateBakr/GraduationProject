@@ -6,21 +6,16 @@ export async function register(formData) {
     try {
 
         const registerResponse = await ThirdParty.Register(formData);
-        console.log(registerResponse);
-        const {email,username} = registerResponse.user;
-        console.log(email,username);
-   
+       
+      
     
         if (registerResponse.status === 'success') {
         
-            const {username} = await decodeAndSetCookies(registerResponse.token, registerResponse.token);
-                console.log(username);
+         
             return {
                 success: true,
                 message: "Login successful",
-                tokens: {accessToken: registerResponse.token, refreshToken: registerResponse.token},
-                statusCode: 200,
-                username: username,
+            
             };
         }
 

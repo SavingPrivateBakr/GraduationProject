@@ -22,7 +22,7 @@ export default function DashBoardHeader() {
                     <FaBug className="text-primaryBlack" /> Ats~Cracker
                 </Link>
                 <NavComponent />
-                <LoginBtn/>
+                
             </div>
         </div>
     );

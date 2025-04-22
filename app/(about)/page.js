@@ -4,8 +4,10 @@ import LoginBtn from "@/components/auth/login";
 export default function Landing() {
   
     return (
-        <div className="flex flex-col justify-center gap-24 items-center  mt-32 font-inter  px-6 md:px-16">
-          
+      <AppProvider><div>
+  
+       <div className="flex flex-col justify-center gap-24 items-center  mt-32 font-inter  px-6 md:px-16">
+        
        
           <h1 className="text-7xl md:text-8xl font-bold text-white ">
             Career Compass AI
@@ -21,6 +23,8 @@ export default function Landing() {
           <LoginBtn/>
           </div>
           </AppProvider>
+        </div> 
         </div>
+        </AppProvider>
     );
 }

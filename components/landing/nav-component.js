@@ -10,15 +10,23 @@ const routes = [
     },
     {
         icon: 'FaInfoCircle',
-        title: 'About',
+        title: 'SignIn',
         path: '/about'
     }
 ];
 
+const routesforauthenticated = [
+    {
+        icon: 'AiFillHome',
+        title: 'Home',
+        path: '/'
+    }, 
+]
+
 export default function NavComponent() {
     const { isAuthenticated,user } = useAppContext();
     const userRoutes = isAuthenticated ? [
-        ...routes,
+        ...routesforauthenticated,
         {
             icon: 'FaUser',
             title: 'Dashboard',

@@ -16,8 +16,6 @@ async function tryToRefreshToken(refreshToken) {
     }
 }
 
-
-
 export async function authMiddleware(req) {
     const token = req.cookies.get('accessToken');
     const refreshToken = req.cookies.get('refreshToken');
@@ -33,6 +31,8 @@ export async function authMiddleware(req) {
 
         return NextResponse.next();
     }
+
+    return NextResponse.next(); 
 }
 
 export async function GeneralMiddleware(req) {
@@ -46,13 +46,19 @@ export async function GeneralMiddleware(req) {
 }
 
 export function middleware(request) {
+    const token = request.cookies.get('accessToken');
+
+   
+    if (token && request.nextUrl.pathname === '/about') {
+        return NextResponse.redirect(new URL('/', request.url)); 
+    }
+
     if (request.nextUrl.pathname.startsWith('/dashboard')) {
         return authMiddleware(request);
     } else {
         return GeneralMiddleware(request);
     }
 }
-
 
 export const config = {
     matcher: ['/', '/:path*'],

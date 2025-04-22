@@ -44,7 +44,7 @@ const AppProvider = ({children}) => {
 
         }
     }
-   console.log(resumeData);
+
   
     const defaultCv = {
         id: 'new',
