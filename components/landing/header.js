@@ -1,35 +1,56 @@
+'use client';
 import Link from "next/link";
-import {FaBug} from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { BrainCog } from "lucide-react";
 import NavComponent from "@/components/landing/nav-component";
 import LoginBtn from "@/components/auth/login";
 import AppProvider from "@/context/app-provider";
 
-export default async function Header({atsClass='text-primaryBlack'}) {
+export default function Header({ atsClass = 'text-primaryBlack' }) {
+  const [isScrolled, setIsScrolled] = useState(false);
 
-    return (
-        <header className="sticky top-0 z-50 w-full  px-3 pt-4 md:px-6 lg:px-2 xl:px-6 rounded-l-xl rounded-r-xl shadow-lg">
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-        <div
-            className="grid w-full grid-cols-[max-content_max-content] items-center bg-slate-800
-             justify-between gap-4 rounded-large py-3 lg:grid-cols-[max-content_1fr_max-content] lg:px-4 hover:bg-opacity-90 transition-all"
-        >
-    
-                {/* Name */}
-                <Link
-                    href="/"
-                    className={`ml-4 flex items-center gap-2 text-xl text-white font-semibold ${atsClass}`}
-                >
-                CareerCompass
-                </Link>
+  return (
+    <header
+      className={`sticky top-0 left-0 right-0 z-50 backdrop-blur-sm transition-all duration-300 ${
+        isScrolled ? 'shadow-md' : ''
+      } bg-transparent`}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-3 items-center py-4">
+          {/* Left - Logo */}
+          <div className="flex items-center">
+            <Link
+              href="/"
+              className={`flex items-center gap-2 text-xl font-bold text-white ${atsClass}`}
+            >
+              <BrainCog className="h-6 w-6 text-blue-400" />
+              CareerCompass
+            </Link>
+          </div>
 
-                <AppProvider>
-                    {/* Navigation */}
-                    <NavComponent/>
-                    {/* Login */}
-                    <LoginBtn/>
-                </AppProvider>
+          {/* Center - Nav */}
+          <div className="flex justify-center">
+          
+              <NavComponent />
+           
+          </div>
 
-            </div>
-        </header>
-    );
+          {/* Right - Login */}
+          <div className="flex justify-end">
+          
+              <LoginBtn />
+           
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 }

@@ -1,45 +1,51 @@
 'use client';
 import NavItem from "@/components/landing/nav-item";
 import useAppContext from "@/hooks/useAppContext";
+import { useEffect,useState } from "react";
 
-const routes = [
-    {
-        icon: 'AiFillHome',
-        title: 'Home',
-        path: '/'
-    },
-    {
-        icon: 'FaInfoCircle',
-        title: 'SignIn',
-        path: '/about'
-    }
+const publicRoutes = [
+  {
+    icon: 'AiFillHome',
+    title: 'Home',
+    path: '/',
+  },
+  {
+    icon: 'FaInfoCircle',
+    title: 'SignIn',
+    path: '/about',
+  },
 ];
 
-const routesforauthenticated = [
-    {
-        icon: 'AiFillHome',
-        title: 'Home',
-        path: '/'
-    }, 
-]
+const authenticatedRoutes = [
+  {
+    icon: 'AiFillHome',
+    title: 'Home',
+    path: '/',
+  },
+  {
+    icon: 'FaUser',
+    title: 'Dashboard',
+    path: '/dashboard',
+  },
+];
 
 export default function NavComponent() {
-    const { isAuthenticated,user } = useAppContext();
-    const userRoutes = isAuthenticated ? [
-        ...routesforauthenticated,
-        {
-            icon: 'FaUser',
-            title: 'Dashboard',
-            path: '/dashboard'
-        }
-    ] : routes
-    return (
-        <nav className="hidden lg:grid grid-cols-[max-content_max-content_max-content_max-content]
-         justify-end gap-6 pr-2 text-xl">
-            {userRoutes.map((route, index) => {
-                const { icon, title, path } = route;
-                return <NavItem key={index} href={path} icon={icon}>{title}</NavItem>
-            })}
-        </nav>
-    );
+  const { isAuthenticated } = useAppContext();
+    const [routesToShow,setroutesToShow] = useState([]);
+  useEffect(() => {
+
+    setroutesToShow(isAuthenticated ? authenticatedRoutes : publicRoutes);
+  
+  }, [isAuthenticated]);
+
+
+  return (
+    <nav className="hidden lg:flex items-center gap-6 text-lg font-medium">
+      {routesToShow.map(({ icon, title, path }, index) => (
+        <NavItem key={index} href={path} icon={icon}>
+          {title}
+        </NavItem>
+      ))}
+    </nav>
+  );
 }

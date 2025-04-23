@@ -32,7 +32,7 @@ const JobsPage = ( ) => {
       
       try {
         const response= await joblist(jobType, location);
-        console.log(response.jobs.data.jobs[0]);
+       
 
         setJobs(response.jobs.data.jobs);
       } catch (error) {

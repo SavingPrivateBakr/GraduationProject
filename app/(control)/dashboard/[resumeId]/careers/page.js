@@ -10,11 +10,12 @@ export default function Careers({ params }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const router = useRouter();
-
+  console.log(resumeId);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await analysisCv(resumeId);
+        console.log(response);
         const sortedCareers = response.careers.data.careers.sort(
           (a, b) => b.matchScore - a.matchScore
         );

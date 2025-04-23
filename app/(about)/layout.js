@@ -12,12 +12,12 @@ import {geistMono, geistSans} from "@/app/fonts";
 export default function RootLayout({children}) {
     return (
 
-        <div >
+      
             <AppProvider>
     
                 {children}
             </AppProvider>
-        </div>
+       
         
 
     );

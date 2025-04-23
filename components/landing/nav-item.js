@@ -23,7 +23,7 @@ export default function NavItem({ href, icon, children }) {
             href={href}
             className={`flex items-center gap-2 ${
                 isActive ? "text-gray-600" : "text-gray-400"
-            } hover:text-primaryBlack`}
+            } hover:text-white`}
         >
             <Icon className={`text-lg ${isActive ? "text-gray-500" : "text-gray-400"}`} />
             {children}

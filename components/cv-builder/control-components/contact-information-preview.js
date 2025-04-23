@@ -26,8 +26,8 @@ const ContactInformationPreview = () => {
                         icon={MdEditNote} iconSize={20} className="border-none cursor-pointer
                         appearance-none touch-manipulation flex
                         focus-visible:outline-blue-600 font-bold hover:opacity-80
-                        min-h-[30px] min-w-[30px] rounded-full
-                        text-white bg-gradientPinkRed absolute right-4 top-4 h-8 w-8"
+                        min-h-[40px] min-w-[40px] rounded-full
+                        text-white  absolute right-4 top-4 h-8 w-8"
                                         iconColor={"blue"}/>
 
                     <div className={"mt-2"}>

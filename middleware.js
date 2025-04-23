@@ -4,7 +4,7 @@ import { decodeAndSetCookies, removeAllUserCookies } from "@/lib/server-utils";
 
 async function tryToRefreshToken(refreshToken) {
     try {
-        console.log('Refreshing token');
+        
         const response = await ThirdParty.RefreshToken(refreshToken);
         const accessToken = response.access;
         await decodeAndSetCookies(accessToken, refreshToken);
@@ -21,7 +21,7 @@ export async function authMiddleware(req) {
     const refreshToken = req.cookies.get('refreshToken');
 
     if (!token && !refreshToken) {
-        return NextResponse.redirect(new URL('/', req.url)); // Redirect if no tokens
+        return NextResponse.redirect(new URL('/about', req.url)); // Redirect if no tokens
     }
 
     if (!token && refreshToken) {

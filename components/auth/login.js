@@ -30,9 +30,9 @@ function LoginBtn() {
         <Menu as="div" className="relative inline-block text-left">
           <Menu.Button
             
-            className="h-[60px] w-[196px] rounded-md text-base font-bold text-white hover:bg-opacity-90 bg-gradient-to-r from-blue-400 to-purple-500 transition-all"
+            className="h-[60px] w-[100px]  rounded-md text-base font-bold text-white hover:bg-opacity-90 bg-gradient-to-r from-blue-400 to-purple-500 transition-all"
           >
-            Welcome, Sign In
+         Get Started
           </Menu.Button>
         </Menu>
       ) : (
