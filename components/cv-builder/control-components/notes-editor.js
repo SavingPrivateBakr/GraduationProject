@@ -108,7 +108,7 @@ const NotesEditor = ({
                         />
                     })
                 }
-            </DroppableUtil>
+            </DroppableUtil> 
         </MinimizedCard>
     )
 

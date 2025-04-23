@@ -3,14 +3,14 @@ import { FaEdit } from "react-icons/fa";
 import { MdSystemUpdateAlt } from "react-icons/md";
 import WinPrint from "@/lib/pdf-save";
 import useAppContext from "@/hooks/useAppContext";
-import { useState } from "react";
+import { use, useState,useEffect } from "react";
 import WinPrintPDF from "@/lib/prepare-pdf";
 import PdfSave from "@/lib/pdf-save";
 
 const ResumeTitleDownload = () => {
     const { resumeData, setResumeData ,syncResumeData} = useAppContext();
     const [isEditing, setIsEditing] = useState(false);
-    const [title, setTitle] = useState(resumeData.title || "Untitled");
+    const [title, setTitle] = useState("Untitled");
 
     const handleEditToggle = () => {
         setIsEditing((prev) => !prev);
@@ -21,7 +21,9 @@ const ResumeTitleDownload = () => {
     };
 
     const handleSaveTitle = () => {
+
         const newData = { ...resumeData, title }
+        newData.data.title = title;
         setResumeData(newData);
         setIsEditing(false);
         syncResumeData(newData);
@@ -30,6 +32,15 @@ const ResumeTitleDownload = () => {
     const syncAndSave = () => {
         PdfSave({printDivId: "resume"});
     }
+
+    useEffect(() => {
+        console.log("Resume Data: ", resumeData);
+        setTitle(resumeData.data.title);
+    }
+        , [resumeData]);
+
+
+    
 
     return (
         <div className="bg-homeBackgroundColor sidebar:rounded-b-large sidebar:pt-8
@@ -55,7 +66,7 @@ const ResumeTitleDownload = () => {
                             className="text-primaryBlack truncate text-2xl font-extrabold cursor-pointer hover:opacity-80 max-w-[300px] w-full"
                             onClick={handleEditToggle}
                         >
-                            {resumeData.title || "Untitled"}
+                            {title || "Untitled"}
                         </p>
                     )}
                     {!isEditing && (

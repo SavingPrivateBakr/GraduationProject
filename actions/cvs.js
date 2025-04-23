@@ -36,7 +36,7 @@ export async function cvListAction(formData) {
 export async function cvCreateUpdate(cvData){
    
     try{
-       
+     
         const cookies = await getAccessToken();
         if (!cookies){
             redirect('/');
@@ -56,9 +56,7 @@ export async function cvCreateUpdate(cvData){
    
         console.error(error);
     }
-    return {message: "An Error Occurred, Please try again",
-        success: false
-    };
+    
 }
 
 
@@ -171,7 +169,7 @@ export async function analysisCv(cvId){
 export async function careerpath(cvId, track){
 
     try{
-        console.log(cvId, track);   
+      
         const cookies = await getAccessToken();
         if (!cookies){
             redirect('/');
@@ -234,7 +232,7 @@ export async function atsanalysis(cvId, jobDescription){
                 success: false
             };
         }
-        console.log(cvId, jobDescription);
+     
         const atsresult = await ThirdParty.atsanalysis(cookies.value,cvId,jobDescription);
      
         return {

@@ -49,7 +49,7 @@ export const ResumeList = ({...props}) => {
     };
 
     useEffect(() => {
-   
+       
         fetchCvList(page);
     }, [page]);
 
@@ -74,7 +74,7 @@ export const ResumeList = ({...props}) => {
         }
     };
     useEffect(() => {
-  
+      
         const container = containerRef.current;
         container.addEventListener('wheel', handleWheel, { passive: false });
         return () => {
@@ -83,7 +83,7 @@ export const ResumeList = ({...props}) => {
     }, []);
 
     const path=usePathname();
-    console.log(resumeList);
+   
   
     return <div {...props}>
 

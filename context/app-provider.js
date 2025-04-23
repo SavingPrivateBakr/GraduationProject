@@ -34,9 +34,9 @@ const AppProvider = ({children}) => {
 
 
     const syncResumeData = async (data) => {
-  
+            
         const response = await cvCreateUpdate(data);
-        
+        console.log("response",response);
         if(response.success && resumeData.id === 'new'){
             setResumeData({
                 ...response.response
@@ -93,14 +93,15 @@ const AppProvider = ({children}) => {
         }
 
 
-        let cv = resumeList.find(cv => cv.id == id);
-        if (!cv) {
+        
+      
             const response = await cvGetAction(id);
+     
             if (response.success) {
-                cv = response.cv;
+                await console.log("zn");
+                await setResumeData(response.cv);
             }
-        }
-        setResumeData(cv);
+         
     }
 
 

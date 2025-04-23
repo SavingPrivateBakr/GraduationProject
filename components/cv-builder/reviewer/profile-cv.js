@@ -35,7 +35,7 @@ const ProfileCv = ({data,isListItemPreview,...props}) => {
                 <div className="flex flex-col m-0 p-0">
                     <h2
                         onBlur={(e) => OnEditSectionTitle(e,"profile")}
-                        className="section-title mb-1 border-b-2 border-gray-300 editable m-0 p-0" contentEditable suppressContentEditableWarning>
+                        className="section-title mb-1 border-b-2 border-gray-300 editable m-0 p-0"  >
                         {cvData.data.titles["profile"]}
                     </h2>
                     <div className="grid gap-0 m-0 pl-1">
@@ -43,7 +43,7 @@ const ProfileCv = ({data,isListItemPreview,...props}) => {
                            cvData.data.summary.map((item, index) => {
                                 return item.isShownInPreview ?
                                     <p key={item.text}
-                                       className={"editable"} contentEditable suppressContentEditableWarning
+                                       className={"editable"}  
                                        onBlur={(e) => OnEditItem(e, index)}
                                     >{item.text}</p>:
                                     null
