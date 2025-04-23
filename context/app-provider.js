@@ -3,6 +3,8 @@ import React, {useEffect, useRef, useState,memo,useLayoutEffect} from 'react';
 import AppContext from './app-context';
 import {getEmailAndName} from "@/lib/utils";
 import {cvCreateUpdate, cvGetAction} from "@/actions/cvs";
+import {redirect} from "next/navigation";
+
 
 const AppProvider = ({children}) => {
     const [resumeData, setResumeData] = useState(null);
@@ -34,14 +36,20 @@ const AppProvider = ({children}) => {
 
 
     const syncResumeData = async (data) => {
+ 
+      
+            setResumeData(
+                data
+            );
+            console.log(resumeData);
             
-        const response = await cvCreateUpdate(data);
-        console.log("response",response);
-        if(response.success && resumeData.id === 'new'){
-            setResumeData({
-                ...response.response
-            });
+    }
 
+    const saveResumeData = async () => {
+        console.log("fs",resumeData);
+        const response = await cvCreateUpdate(resumeData);
+        if (response.success) {
+          await redirect('/dashboard');
         }
     }
 
@@ -87,7 +95,9 @@ const AppProvider = ({children}) => {
     }
 
     const getResumeWithId = async (id) => {
+       
         if (id === 'cvnew') {
+            console.log("zzzzz");
             setResumeData({...defaultCv});
             return;
         }
@@ -98,7 +108,7 @@ const AppProvider = ({children}) => {
             const response = await cvGetAction(id);
      
             if (response.success) {
-                await console.log("zn");
+               
                 await setResumeData(response.cv);
             }
          
@@ -151,7 +161,7 @@ const AppProvider = ({children}) => {
 
 
             user, isAuthenticated, login, logout,
-            resumeList, setResumeList, syncResumeData,getResumeWithId,defaultCv
+            resumeList, setResumeList, syncResumeData,getResumeWithId,defaultCv,saveResumeData
         }}>
             {children}
         </AppContext.Provider>

@@ -65,6 +65,7 @@ export default function ControlPanel({id}) {
 
     return <div id={"ControlPanel"} className={"sidebar:px-6 w-full  xl:px-8 2xl:px-10"}>
         <ResumeTitleDownload/>
+       
         {controlPanel === ControlPanelView.MainView && <div>
 
             <DroppableUtil droppableId={"layout"} type={"LAYOUT"} >

@@ -42,7 +42,7 @@ const ContactInformationEdit = () => {
         syncResumeData(originalResumeData);
     };
     const handleSave = () => {
-        // Save the data
+        
         setControlPanelIndex(ControlPanelView.MainView);
         syncResumeData(resumeData);
 

@@ -18,7 +18,7 @@ export const ResumeList = ({...props}) => {
     const [page, setPage] = useState(1);
     const [nextPage, setNextPage] = useState(null);
     const containerRef = useRef(null);
-
+console.log(resumeList);
     const fetchCvList = async (currentPage) => {
         try {
             
