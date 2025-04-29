@@ -20,7 +20,7 @@ export default function ResumeUploader({ params }) {
     try {
 
       
-      
+      console.log(localJobDescription);
 
       localStorage.setItem('jobDescription', localJobDescription);
       router.push(`/dashboard/${resumeId}/atsrecord/atsresult`);
