@@ -232,7 +232,7 @@ export async function atsanalysis(cvId, jobDescription){
                 success: false
             };
         }
-     
+      
         const atsresult = await ThirdParty.atsanalysis(cookies.value,cvId,jobDescription);
      
         return {

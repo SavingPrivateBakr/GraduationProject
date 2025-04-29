@@ -9,7 +9,7 @@ function Roadmap({ params }) {
   const [error, setError] = useState(null);
 
   const searchParams = useSearchParams();
-  const { resumeId } = params;
+  const { resumeId } = React.use(params);
 
   const desiredCareer = searchParams.get('desiredCareer');
 

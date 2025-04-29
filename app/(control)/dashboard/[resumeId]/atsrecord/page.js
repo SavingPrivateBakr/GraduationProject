@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function ResumeUploader({ params }) {
-  const { resumeId } = params; // Get resumeId from params
+  const { resumeId } = React.use(params); // Get resumeId from params
   const [error, setError] = useState('');
   const [localJobDescription, setLocalJobDescription] = useState('');
   const router = useRouter();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,10 +21,10 @@ export default function ResumeUploader({ params }) {
 
       
       
-     
-      router.push(`/dashboard/${resumeId}/atsrecord/atsresult`,{
-        state : { jobDescription: localJobDescription }
-      });
+
+      localStorage.setItem('jobDescription', localJobDescription);
+      router.push(`/dashboard/${resumeId}/atsrecord/atsresult`);
+      
       
     } catch (err) {
       console.error('Navigation error:', err);

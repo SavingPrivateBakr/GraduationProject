@@ -15,6 +15,7 @@ const AppProvider = ({children}) => {
     const [currentEditIndex, setCurrentEditIndex] = useState({});
 
 
+
     const [user, setUser] = useState(() => {
         return getEmailAndName();
       });

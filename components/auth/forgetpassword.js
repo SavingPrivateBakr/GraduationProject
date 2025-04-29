@@ -21,7 +21,7 @@ export default function ForgotPasswordModal({ onChangeModal, closeModal }) {
     setIsSubmitting(true);
 
     const message = await forgetpassword({ email});
-    console.log("message", message);    
+  
     if (message.success) {
         showSuccess("Password reset link sent successfully.");
       router.push("/about"); // Redirect to the login page after successful reset link request

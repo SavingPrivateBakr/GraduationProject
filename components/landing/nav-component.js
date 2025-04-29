@@ -33,7 +33,7 @@ export default function NavComponent() {
   const { isAuthenticated } = useAppContext();
     const [routesToShow,setroutesToShow] = useState([]);
   useEffect(() => {
-
+    
     setroutesToShow(isAuthenticated ? authenticatedRoutes : publicRoutes);
   
   }, [isAuthenticated]);

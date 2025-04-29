@@ -4,6 +4,7 @@ import { MdExpandMore, MdExpandLess } from 'react-icons/md';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/cards/cardcopied";
 import { atsanalysis } from '@/actions/cvs';
 import { useSearchParams } from 'next/navigation';
+
 const getScoreColor = (score) => {
   if (score >= 90) return 'bg-emerald-500 text-white';
   if (score >= 70) return 'bg-blue-500 text-white';
@@ -24,15 +25,14 @@ const ResumeWorth = ({ params,
     const [error, setError] = useState(null);
 
     const { resumeId } = React.use(params);
-    const jobDescription =  window.history.state;
+      const  jobDescription  = localStorage.getItem('jobDescription');
 
-
-      
   
 
       useEffect(() => { 
       const  fetchasts = async () => {
             try {
+              console.log("jobDescription",jobDescription);
              
               const response = await atsanalysis(resumeId,jobDescription);
         

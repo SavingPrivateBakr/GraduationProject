@@ -9,7 +9,7 @@ import { MdExpandMore, MdExpandLess } from 'react-icons/md';
 
 export default function Decision({ params }) {
   const { resumeData, getResumeWithId } = useAppContext();
-  const { resumeId } = params;
+  const { resumeId } = React.use(params);
   const router = useRouter();
   
   const [isExpanded, setIsExpanded] = useState(false);

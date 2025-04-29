@@ -32,7 +32,7 @@ export async function login(formData) {
         // Return error response
         return {
             success: false,
-            message: message,
+            message: error.response.data.message,
             statusCode: errorCode
         };
     }

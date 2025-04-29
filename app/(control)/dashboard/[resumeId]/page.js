@@ -1,8 +1,10 @@
+
 import BuilderPage from "@/components/cv-builder/builder";
 import { DndProvider } from "@/context/dnd-provider";
 
 export default async function CVBuilderPage({ params }) {
-    const { resumeId } = await params;
+  
+    const { resumeId } = params;
 
     return (
         <DndProvider>

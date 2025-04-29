@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
         <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl animate-pulse-slow animation-delay-2000"></div>
         <div className="absolute top-1/2 left-1/4 w-72 h-72 bg-blue-600/5 rounded-full blur-3xl animate-pulse-slow animation-delay-4000"></div>
           <Header atsClass="text-white" />
-          <main >
+          <main className="relative z-10">
             {children}
           </main>
       
