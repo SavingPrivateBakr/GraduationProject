@@ -45,24 +45,35 @@ function Roadmap({ params }) {
   }
 
   return (
-    <div className="max-w-6xl mt-5 mb-5 w-4/5 mx-auto text-white">
+    <div className="max-w-6xl mt-5 mb-5 mx-auto text-white px-4">
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-          {desiredCareer} Roadmap 
+          {desiredCareer} Roadmap
         </h1>
         <p className="text-xl text-gray-400">
           A year-long journey to becoming a {desiredCareer}
         </p>
       </div>
 
-      <div className="relative">
+      <div className="relative overflow-x-auto">
+        {/* Vertical center line */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-[#1e21fc] z-0" />
+
         {career.map((module, index) => (
-          <div key={index} className="relative mb-12">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-[#1e21fc]" />
-            <div className={`flex items-center ${module.side === "right" ? "flex-row-reverse" : ""}`}>
-              <div className="w-5 h-5 absolute left-1/2 transform -translate-x-1/2 bg-[#1e21fc] rounded-full z-10" />
-              <div className="w-1/2">
-                <div className={`bg-[#1E293B] border-gray-700 p-10 shadow-lg ${module.side === "left" ? "rounded-l-lg border-r-0" : "rounded-r-lg border-l-0"}`}>
+          <div key={index} className="relative mb-16 flex justify-center">
+            {/* Timeline Dot */}
+            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-5 h-5 bg-[#1e21fc] rounded-full z-10" />
+
+            <div
+              className={`flex flex-col sm:flex-row items-center w-full max-w-5xl ${
+                module.side === "right" ? "sm:flex-row-reverse" : ""
+              }`}
+            >
+              <div className="w-full sm:w-[45%] z-10">
+                <div
+                  className={`bg-[#1E293B] border border-gray-700 p-6 sm:p-10 shadow-lg 
+                  ${module.side === "left" ? "rounded-l-lg sm:rounded-r-lg sm:rounded-l-none" : "rounded-r-lg sm:rounded-l-lg sm:rounded-r-none"}`}
+                >
                   <div className="inline-block px-4 py-1 bg-[#1e21fc] rounded-full text-sm mb-4 text-white font-semibold">
                     {module.time}
                   </div>
@@ -83,6 +94,7 @@ function Roadmap({ params }) {
         ))}
       </div>
 
+      {/* CTA */}
       <div className="text-center mt-16">
         <button className="px-8 py-4 rounded-lg bg-blue-600 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 transition-all duration-300 text-white shadow-lg">
           Join Community
