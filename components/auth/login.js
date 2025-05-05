@@ -17,8 +17,6 @@ function LoginBtn() {
     setIsOpen(true);
   }, []);
 
- 
-
   const userProfile = useMemo(() => {
     console.log("User Profile Memoized");
     return isAuthenticated ? <UserProfileButton username={user?.username} /> : null;
@@ -29,16 +27,14 @@ function LoginBtn() {
       {!isAuthenticated ? (
         <Menu as="div" className="relative inline-block text-left">
           <Menu.Button
-            
-            className="h-[60px] w-[100px]  rounded-md text-base font-bold text-white hover:bg-opacity-90 bg-gradient-to-r from-blue-400 to-purple-500 transition-all"
+            className="text-base font-bold text-white hover:underline transition-all"
           >
-         Get Started
+            Get Started
           </Menu.Button>
         </Menu>
       ) : (
         userProfile
       )}
-
     </>
   );
 }

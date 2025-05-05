@@ -37,7 +37,7 @@ function cvupload() {
 
   return (
 
-      <div className="max-w-6xl mx-auto mt-40">
+      <div className="max-w-6xl mx-auto mt-20">
         <div className="text-center mb-16">
         
           <p className="text-gray-400 mt-4 text-lg">

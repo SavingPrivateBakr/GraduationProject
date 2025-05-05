@@ -1,7 +1,7 @@
 'use client';
 import NavItem from "@/components/landing/nav-item";
 import useAppContext from "@/hooks/useAppContext";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
 const publicRoutes = [
   {
@@ -29,20 +29,18 @@ const authenticatedRoutes = [
   },
 ];
 
-export default function NavComponent() {
+export default function NavComponent({ isMobile = false }) {
   const { isAuthenticated } = useAppContext();
-    const [routesToShow,setroutesToShow] = useState([]);
+  const [routesToShow, setRoutesToShow] = useState([]);
+
   useEffect(() => {
-    
-    setroutesToShow(isAuthenticated ? authenticatedRoutes : publicRoutes);
-  
+    setRoutesToShow(isAuthenticated ? authenticatedRoutes : publicRoutes);
   }, [isAuthenticated]);
 
-
   return (
-    <nav className="hidden lg:flex items-center gap-6 text-lg font-medium">
+    <nav className={`gap-9 font-medium  ${isMobile ? 'flex text-2xl flex-col ' : 'hidden md:flex items-center  text-xl'}`}>
       {routesToShow.map(({ icon, title, path }, index) => (
-        <NavItem key={index} href={path} icon={icon}>
+        <NavItem key={index} href={path} icon={icon} className="hover:text-blue-500 transition-colors ">
           {title}
         </NavItem>
       ))}

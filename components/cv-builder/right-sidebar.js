@@ -1,124 +1,61 @@
 import CircularButton from "@/components/general/circle-btn";
-import {FaDownload, FaCopy, FaUpload, FaPaste, FaSyncAlt} from "react-icons/fa";
+import { FaSave, FaTrashAlt, FaChartBar } from "react-icons/fa";
 import useAppContext from "@/hooks/useAppContext";
-import {DownloadIcon} from "@/components/svgs/svgs";
-
+import { useRouter, usePathname } from "next/navigation";
+import { deleteCv } from "@/actions/cvs";
 
 export default function RightSidebar() {
-    const {resumeData, setResumeData,syncResumeData} = useAppContext();
-    const downloadAsJson = () => {
-        const element = document.createElement("a");
-        const file = new Blob([JSON.stringify(resumeData.data)], {type: 'application/json'});
-        element.href = URL.createObjectURL(file);
-        element.download = `resume-${resumeData.title}.json`;
-        document.body.appendChild(element);
-        element.click();
+    const { resumeData, saveResumeData } = useAppContext();
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const handleNavigateToAbout = () => {
+        router.push(`${pathname}/about`);
     };
 
-    const copyAsJson = () => {
-        navigator.clipboard.writeText(JSON.stringify(resumeData.data));
-    };
-    const triggerFileInput = () => {
-        document.getElementById("json-upload-input").click();
+    const handleSave = async () => {
+        await saveResumeData();
     };
 
-    const handleFileUpload = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                try {
-                    const jsonData = JSON.parse(e.target.result);
-                    setResumeData({
-                        ...resumeData,
-                        data: jsonData,
-                    });
-                } catch (err) {
-                    alert("Invalid JSON file format.");
-                }
-            };
-            reader.readAsText(file);
+    const handleDelete = async () => {
+        if (!resumeData) {
+            console.error("No resume data found!");
+            return;
         }
-    };
-
-    const handlePaste = async () => {
         try {
-            const text = await navigator.clipboard.readText();
-
-            try {
-                const jsonData = JSON.parse(text);
-                setResumeData({
-                    ...resumeData,
-                    data: jsonData,
-                });
-            } catch (err) {
-                alert("Invalid JSON format.");
+            const success = await deleteCv(resumeData);
+            if (success.success) {
+                router.push('/dashboard');
             }
-        } catch (err) {
-            alert("Failed to read clipboard content.");
+        } catch (error) {
+            console.error("Error deleting resume:", error);
         }
     };
 
-    const handleSync = () => {
-        syncResumeData(resumeData);
+    return (
+        <div className="fixed right-4 top-1/4 flex flex-col gap-4 z-10">
+            <CircularButton
+                tooltipText="Go to Analysis"
+                onClick={handleNavigateToAbout}
+                icon={FaChartBar}
+                bgColor="bg-indigo-600 hover:bg-indigo-700"
+            />
+            <div className="h-1"></div>
 
-    }
+            <CircularButton
+                tooltipText="Save Resume"
+                onClick={handleSave}
+                icon={FaSave}
+                bgColor="bg-teal-500 hover:bg-teal-600"
+            />
+            <div className="h-1"></div>
 
-    return <div className="fixed right-4 top-1/4 flex flex-col gap-4 z-10">
-        {/* Hidden input for file upload */}
-        <input
-            id="json-upload-input"
-            type="file"
-            accept="application/json"
-            onChange={handleFileUpload}
-            className="hidden"
-        />
-
-
-        <CircularButton
-            tooltipText="Download JSON"
-            onClick={() => {
-                downloadAsJson();
-            }}
-            icon={DownloadIcon}
-            bgColor="bg-primaryBlack"
-        />
-        <div className="h-1"></div>
-
-        <CircularButton
-            tooltipText="Copy As JSON"
-            onClick={() => {
-                copyAsJson();
-            }}
-            icon={FaCopy}
-            bgColor="bg-teal-500 hover:bg-teal-600"
-        />
-        <div className="h-1"></div>
-
-        <CircularButton
-            tooltipText="Upload JSON"
-            onClick={triggerFileInput}
-            icon={FaUpload}
-            bgColor="bg-gradient-to-r-purple-blue"
-        />
-        <div className="h-1"></div>
-
-
-        <CircularButton
-            tooltipText="Upload Via Clipboard"
-            onClick={handlePaste}
-            icon={FaPaste}
-            bgColor="bg-green-500 hover:bg-green-600"
-        />
-
-        <div className="h-1"></div>
-
-        <CircularButton
-            tooltipText="Sync"
-            onClick={handleSync}
-            icon={FaSyncAlt}
-            bgColor="bg-yellow-500 hover:bg-yellow-600"
-        />
-    </div>
-
+            <CircularButton
+                tooltipText="Delete Resume"
+                onClick={handleDelete}
+                icon={FaTrashAlt}
+                bgColor="bg-red-500 hover:bg-red-600"
+            />
+        </div>
+    );
 }

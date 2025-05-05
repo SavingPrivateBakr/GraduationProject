@@ -56,12 +56,13 @@ export default function BuilderPage({id, data}) {
             <div
                 className={"bg-homeBackgroundColor px-6 scrollbar-hide relative min-h-screen w-full max-w-full xl:px-8 2xl:px-10"}>
                 <div className="
+                text-black 
                   sidebar:grid-cols-[min-content_max(550px)_auto] sidebar:justify-center
                   lgxl:grid-cols-[min-content_max(570px)_auto] 3xl:grid-cols-[min-content_max(700px)_auto]
                   grid w-full max-w-full grid-cols-1
                   xl:grid-cols-[min-content_max(600px)_auto] 2xl:grid-cols-[min-content_max(650px)_auto]
                   ">
-                    <BuilderSideBar/>
+              
                     <ControlPanel id={id}/>
                     <ResumePreviewer />
 
