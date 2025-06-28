@@ -88,10 +88,8 @@ const ResumeWorth = ({ params,
   }
 
   return (
-    <div className="container mx-auto p-4 md:p-8 max-w-6xl text-white relative overflow-hidden">
-      {/* Background elements - moved outside of interactive components */}
-      <div className="absolute -bottom-5 -left-5 h-20 w-20 rounded-full bg-blue-600/10 blur-xl pointer-events-none"></div>
-      <div className="absolute -top-5 -right-5 h-32 w-32 rounded-full bg-blue-600/10 blur-xl pointer-events-none"></div>
+    <div className="container transition mx-auto p-4 md:p-8 max-w-6xl text-white relative overflow-hidden">
+   
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 relative z-10">
         {/* ATS Score Card */}
@@ -122,7 +120,7 @@ const ResumeWorth = ({ params,
               <span className="text-xs text-gray-500">Format: {atsScore.formatScore}%</span>
             </div>
           </CardHeader>
-          <CardContent className={`${isScoresExpanded ? 'block' : 'hidden'} mt-4 space-y-4`}>
+          <CardContent className={`${isScoresExpanded ? 'block' : 'hidden'} mt-4 space-y-4`} >
             <div className="bg-gray-700/50 rounded-xl p-4">
               <h4 className="font-semibold text-blue-300 mb-2">Keywords Found ({atsScore.keywords.length})</h4>
               <div className="flex flex-wrap gap-2">

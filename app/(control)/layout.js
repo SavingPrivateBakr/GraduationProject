@@ -8,7 +8,7 @@ import Header from "@/components/landing/header"
 import {geistMono, geistSans} from "@/app/fonts";
 
 export const metadata = {
-    title: "ATS Crack",
+   
     description: "Make Your Resume Stand Out",
 };
 
