@@ -30,15 +30,18 @@ function ChatContent({ message, setInputShow }) {
         const response = await botreply(normalizedMessage.text,resumeData.data);
           console.log("Bot reply responsess:", response);
         const botMessage = {
-          text: response.message || "Sorry, I didn't understand that.",
+          text: response.success==true? "Have Been Changed" : "Sorry, I didn't understand that.",
           sender: "bot",
         };
 
         setMessages((prev) => [...prev, botMessage]);
 
-        if (response.resumeData) {
+        if (response.success) {
+          console.log("Bot reply response data:", response.response.data);
           setOldResumeData(resumeData);
-          setResumeData(response.resumeData);
+          console.log("Old Resume Data:", resumeData);
+          console.log("New Resume Data:", response.response);
+          setResumeData(response.response);
         }
         
       } catch (error) {
