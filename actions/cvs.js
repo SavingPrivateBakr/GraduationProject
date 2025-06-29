@@ -255,4 +255,28 @@ export async function atsanalysis(cvId, jobDescription){
 }
 
 
+export async function botreply(cvdata,prompt) {
+
+    try {
+        const cookies = await getAccessToken();
+       
+        if (!cookies) {
+            redirect('/');
+            return { message: "An Error Occurred, Please try again", success: false };
+        }
+          
+        const response = await ThirdParty.botreply(cookies.value, cvdata,prompt);
+        
+        return {
+            success: true,
+            response
+        };
+
+    } catch (error) {
+        console.error(error);
+    }
+    return { message: "An Error Occurred, Please try again", success: false };
+}
+
+
 
