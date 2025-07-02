@@ -41,6 +41,7 @@ function ChatContent({ message, setInputShow }) {
           setOldResumeData(resumeData);
           console.log("Old Resume Data:", resumeData);
           console.log("New Resume Data:", response.response);
+          response.response.title = resumeData.data.title;
           setResumeData(response.response);
         }
         

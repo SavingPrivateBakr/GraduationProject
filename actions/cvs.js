@@ -255,7 +255,7 @@ export async function atsanalysis(cvId, jobDescription){
 }
 
 
-export async function botreply(cvdata,prompt) {
+export async function botreply(prompt,cvdata) {
 
     try {
         const cookies = await getAccessToken();
@@ -265,7 +265,7 @@ export async function botreply(cvdata,prompt) {
             return { message: "An Error Occurred, Please try again", success: false };
         }
           
-        const response = await ThirdParty.botreply(cookies.value, cvdata,prompt);
+        const response = await ThirdParty.botreply(cookies.value, prompt,cvdata);
         
         return {
             success: true,

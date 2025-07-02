@@ -16,12 +16,7 @@ function ChatBox({setShowChat}) {
        return (
     <div className="fixed bottom-4 right-4 w-[450px] h-[450px] bg-gray-100 rounded-lg shadow-lg flex flex-col  z-50">
       {/* Loading Overlay - only inside the chat box */}
-      {loading && (
-        <div className="absolute inset-0 flex justify-center items-center bg-white bg-opacity-60 pointer-events-none z-50">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-primaryBlack" />
-        </div>
-      )}
-
+     
       <ChatHeader setShowChat={setShowChat} />
 
       <div className="flex-grow overflow-y-auto relative">

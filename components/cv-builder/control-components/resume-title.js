@@ -24,6 +24,7 @@ const ResumeTitleDownload = () => {
 
         const newData = { ...resumeData, title }
         newData.data.title = title;
+       
         setResumeData(newData);
         setIsEditing(false);
         syncResumeData(newData);
@@ -34,8 +35,12 @@ const ResumeTitleDownload = () => {
     }
 
     useEffect(() => {
-        console.log("Resume Data: ", resumeData);
-        setTitle(resumeData.data.title);
+        console.log("Resume Datasss: ", resumeData);
+        console.log("Resume Data Title: ", resumeData?.data?.title);
+        console.log("Resume Data Title: ", resumeData?.title);
+
+        const titleFromData = resumeData?.data?.title || resumeData?.title || "Untitled";
+        setTitle(titleFromData);
     }
         , [resumeData]);
 
