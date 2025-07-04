@@ -258,6 +258,8 @@ export async function atsanalysis(cvId, jobDescription){
 export async function botreply(prompt,cvdata) {
 
     try {
+        console.log("Bot reply function called with prompt:", prompt);
+        console.log("CV data:", cvdata);
         const cookies = await getAccessToken();
        
         if (!cookies) {
